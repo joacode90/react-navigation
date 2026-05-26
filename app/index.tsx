@@ -1,10 +1,25 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 import React from 'react';
+import { Link, useRouter } from 'expo-router'; // <-- Importamos el componente de enlace
 
-export default function index() {
+// Simulamos datos profesionales
+const CUENTAS = [
+    { id: '1', nombre: 'Cuenta Corriente', balance: '$1,250.00', variant: 't1' },
+    { id: '2', nombre: 'Ahorros Alquiler', balance: '$400.00', variant: 't2' },
+];
+
+export default function HomeScreen() {
+
+    const router = useRouter();
+
     return (
         <View style={styles.contenedor}>
-            <Text style={styles.texto}>Home Screen</Text>
+            <StatusBar />
+            <Text style={styles.texto}>Pantalla de Inicio</Text>
+            {/* El href busca directamente el nombre del archivo */}
+            <Link href="/detalles" style={styles.enlace}>
+                Ir a Detalles
+            </Link>
         </View>
     )
 }
@@ -16,6 +31,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     texto: {
-        fontSize: 18,
+        fontSize: 20,
+        marginBottom: 20,
+    },
+    enlace: {
+        color: '#007AFF',
+        fontSize: 16,
+        fontWeight: 'bold'
     },
 });
